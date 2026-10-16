@@ -190,6 +190,11 @@ export class TflService implements FeedProvider {
       const now = this.dateTime.now().getTime()
 
       for (const arrival of arrivals) {
+        if (arrival.destinationNaptanId === stopId) {
+          // Skip trains that terminate here
+          continue
+        }
+
         const direction = directions.get(arrival)
         if (!direction) {
           continue

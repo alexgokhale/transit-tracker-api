@@ -387,6 +387,17 @@ describe("TflService", () => {
       expect(trips.map((t) => t.tripId)).toEqual(["piccadilly-new"])
     })
 
+    it("omits trains that terminate at the stop", async () => {
+      // Act
+      const trips = await getTrips([
+        makeArrival({ vehicleId: "1", destinationNaptanId: KINGS_CROSS }),
+        makeArrival({ vehicleId: "2" }),
+      ])
+
+      // Assert
+      expect(trips.map((t) => t.tripId)).toEqual(["piccadilly-2"])
+    })
+
     it("deduplicates arrivals for the same train", async () => {
       // Act
       const trips = await getTrips([makeArrival(), makeArrival({ id: "2" })])
