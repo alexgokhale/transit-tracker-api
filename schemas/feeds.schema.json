@@ -206,6 +206,45 @@
                 }
               },
               "additionalProperties": false
+            },
+            "tfl": {
+              "type": "object",
+              "description": "Configuration parameters for a TfL (Transport for London) feed.",
+              "properties": {
+                "baseUrl": {
+                  "type": "string",
+                  "examples": [
+                    "https://api.tfl.gov.uk"
+                  ],
+                  "description": "Base URL to the TfL Unified API. Defaults to https://api.tfl.gov.uk",
+                  "format": "uri",
+                  "default": "https://api.tfl.gov.uk"
+                },
+                "appKey": {
+                  "type": "string",
+                  "description": "TfL API app key. Optional, but raises the rate limit. Sign up at https://api-portal.tfl.gov.uk/signup"
+                },
+                "modes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 1,
+                  "description": "TfL modes to include, e.g. tube, dlr, overground, elizabeth-line, tram.",
+                  "default": [
+                    "tube",
+                    "dlr",
+                    "overground",
+                    "elizabeth-line"
+                  ]
+                },
+                "shortLineNames": {
+                  "type": "boolean",
+                  "description": "Show three-letter line codes (e.g. BKR, VIC, H&C) on the display instead of full line names.",
+                  "default": true
+                }
+              },
+              "additionalProperties": false
             }
           },
           "required": [
@@ -221,7 +260,8 @@
                 "required": [
                   "onebusaway",
                   "hafas",
-                  "mvg"
+                  "mvg",
+                  "tfl"
                 ]
               }
             },
@@ -233,7 +273,8 @@
                 "required": [
                   "gtfs",
                   "hafas",
-                  "mvg"
+                  "mvg",
+                  "tfl"
                 ]
               }
             },
@@ -245,7 +286,8 @@
                 "required": [
                   "gtfs",
                   "onebusaway",
-                  "mvg"
+                  "mvg",
+                  "tfl"
                 ]
               }
             },
@@ -257,7 +299,21 @@
                 "required": [
                   "gtfs",
                   "onebusaway",
-                  "hafas"
+                  "hafas",
+                  "tfl"
+                ]
+              }
+            },
+            {
+              "required": [
+                "tfl"
+              ],
+              "not": {
+                "required": [
+                  "gtfs",
+                  "onebusaway",
+                  "hafas",
+                  "mvg"
                 ]
               }
             }
