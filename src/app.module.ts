@@ -16,6 +16,7 @@ import { CacheModule } from "./modules/cache/cache.module"
 import { DateTimeModule } from "./modules/datetime/datetime.module"
 import { FeedModule } from "./modules/feed/feed.module"
 import { NotificationsModule } from "./modules/notifications/notifications.module"
+import { PlanesModule } from "./modules/planes/planes.module"
 import { ConnectionSheddingService } from "./schedule/connection-shedding.service"
 import { CpuMonitorService } from "./schedule/cpu-monitor.service"
 import { ScheduleMetricsController } from "./schedule/schedule-metrics.controller"
@@ -75,6 +76,7 @@ import otelSDK from "./tracing"
     SentryModule.forRoot(),
     FeedModule,
     NotificationsModule,
+    PlanesModule,
   ],
   controllers: [
     ScheduleController,

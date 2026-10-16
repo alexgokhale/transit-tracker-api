@@ -24,6 +24,18 @@
 | `GTFS_IMPORT_BATCH_SIZE` | No | `5000` | Number of rows per batch when importing GTFS data. Only used when `GTFS_IMPORT_METHOD` is `insert`. |
 | `GTFS_RT_MIN_CACHE_AGE` | No | — | Minimum cache duration for GTFS Realtime data (e.g. `30s`, `1m`). Parsed with the `ms` library. |
 
+## Planes
+
+Used by `GET /planes/closest`, which returns the closest airborne plane to a point.
+
+| Variable | Required | Default | Description |
+|---|---|---|---|
+| `ADSB_BASE_URL` | No | `https://api.adsb.lol` | Live aircraft API. Any API with ADS-B Exchange v2 style `/v2/point/{lat}/{lon}/{radius}` queries works, e.g. airplanes.live. |
+| `ADSB_ROUTES_BASE_URL` | No | `https://api.adsbdb.com` | Callsign route lookup (adsbdb). |
+| `PLANES_MAX_ALTITUDE` | No | `15000` | Default altitude threshold in feet. Planes above it are ignored. Requests can override it with `maxAltitude`. |
+| `PLANES_RADIUS` | No | `10` | Default search radius in nautical miles. Requests can override it with `radius`. |
+| `PLANES_RUNWAYS_URL` | No | OurAirports `runways.csv` | Runway list used to spot planes landing or taking off. Downloaded once a day. Set to an empty string to turn runway detection off. |
+
 ## Caching
 
 | Variable | Required | Default | Description |
